@@ -2,8 +2,11 @@
 __pycache__/
 *.py[cod]
 *.sqlite3
+book-example/
 # C extensions
 *.so
+
+
 
 # Distribution / packaging
 .Python
