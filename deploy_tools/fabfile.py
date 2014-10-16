@@ -1,10 +1,22 @@
 import random
 
-from fabric.api import env, local, run, cd
+from fabric.api import env, local, run, cd, sudo
 from fabric.contrib.files import append, exists, sed
 
 
-REPO_URL = 'https://github.com/syndbg/tdd-app.git'
+REPO_URL = 'git@github.com:HackBulgaria/Odin.git'
+
+
+def provision():
+    site_folder = '/home/{}/sites/{}'.format(env.user, env.host)
+    _create_directory_structure_if_neccessary(site_folder)
+    _install_requirements_if_neccessary()
+
+
+def _install_requirements_if_neccessary():
+    sudo('apt-get update')
+    sudo('apt-get install nginx, python3-pip, python-pip')
+    sudo('pip3 install virtualenv')
 
 
 def deploy():
@@ -14,7 +26,7 @@ def deploy():
     _create_directory_structure_if_neccessary(site_folder)
     _get_latest_source(source_folder)
     _update_settings(source_folder, env.host)
-    _update_virtualenv(source_folder)
+    _create_or_update_virtualenv(source_folder)
     _update_static_files(source_folder)
     _update_database(source_folder)
 
@@ -49,7 +61,7 @@ def _update_settings(source_folder, site_name):
     append(settings_path, '\nfrom .secret_key import SECRET_KEY')
 
 
-def _update_virtualenv(source_folder):
+def _create_or_update_virtualenv(source_folder):
     virtualenv_folder = source_folder + '/../virtualenv'
     if not exists(virtualenv_folder, '/bin/pip'):
         run('virtualenv --python=python3 {}'.format(virtualenv_folder))
