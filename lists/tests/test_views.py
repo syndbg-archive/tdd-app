@@ -3,7 +3,7 @@ from unittest import skip
 from django.test import TestCase
 from django.utils.html import escape
 
-from lists.forms import ItemForm, EMPTY_LIST_ERROR
+from lists.forms import ItemForm, ExistingListItemForm, EMPTY_LIST_ERROR
 from lists.models import Item, List
 
 
@@ -143,7 +143,7 @@ class ListViewTest(TestCase):
 
     def test_for_invalid_input_passes_form_to_template(self):
         response = self._post_invalid_input()
-        self.assertIsInstance(response.context['form'], ItemForm)
+        self.assertIsInstance(response.context['form'], ExistingListItemForm)
 
     def test_for_invalid_input_shows_error_on_page(self):
         response = self._post_invalid_input()
