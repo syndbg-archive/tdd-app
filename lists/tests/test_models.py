@@ -35,7 +35,6 @@ class ItemModelTest(TestCase):
         list_ = List.objects.create()
         item = Item(list=list_, text='')
         with self.assertRaises(ValidationError):
-            item.save()
             item.full_clean()
 
     def test_string_representation(self):
