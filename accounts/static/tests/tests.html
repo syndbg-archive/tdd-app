@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>JavaScript tests</title>
-        <link rel="stylesheet" href="qunit.css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="../../../superlists/static/tests/qunit.css" media="screen" title="no title" charset="utf-8">
     </head>
     <body>
         <div id="qunit"></div>
@@ -14,18 +14,11 @@
                 </div>
             </form>
         </div>
-        <script charset="utf-8" src="../jquery.min.js"></script>
-        <script charset="utf-8" src="qunit.js"></script>
-        <script charset="utf-8" src="../list.js"></script>
+        <script charset="utf-8" src="../../../superlists/static/jquery.min.js"></script>
+        <script charset="utf-8" src="../../../superlists/static/tests/qunit.js"></script>
+        <script charset="utf-8" src="../../../superlists/static/list.js"></script>
         <script charset="utf-8" src="../accounts.js"></script>
         <script charset="utf-8">
-            test('errors should be hidden on keypress', function () {
-                $('input').trigger('keypress');
-                equal($('.has-error').is(':visible'), false);
-            });
-            test('errors should not be hidden unless there is a keypress', function () {
-                equal($('.has-error').is(':visible'), true);
-            });
             test('initialize binds sign-in button to navigator.id.request', function () {
                 var requestWasCalled = false;
                 var mockRequestFunction = function () {
@@ -37,8 +30,10 @@
                     }
                 };
 
-                Superlis
-            });
+                Superlists.Accounts.initialize(mockNavigator);
+                $('#login') .trigger('click');
+                equal(requestWasCalled, true);
+            })
         </script>
     </body>
 </html>
