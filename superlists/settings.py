@@ -26,7 +26,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = [DOMAIN]    
+ALLOWED_HOSTS = [DOMAIN]
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = (
 
     'lists',
     'accounts',
+    'functional_tests',
 )
 
 AUTH_USER_MODEL = 'accounts.User'
