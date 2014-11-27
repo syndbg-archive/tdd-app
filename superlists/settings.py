@@ -19,7 +19,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$xpu341d5va$lgq!#6d6@$y^plyga3a@0bgu9lme&@&*v8cd59'
 
-DOMAIN = 'syndbg.com'
+DOMAIN = 'localhost'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
