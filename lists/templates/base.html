@@ -55,7 +55,8 @@
     /*global $, Superlists, navigator */
     $(document).ready(function () {
         var user = "{{ user.email }}" || null;
-        var token = "{% csrf_token %}";
+        var token = "{{ csrf_token }}";
+        console.log(token);
         var urls = {
             login: "{% url 'persona_login' %}",
             logout: "TODO"
