@@ -16,6 +16,7 @@ class PersonaAuthenticationBackend:
         logging.warning('entering authenticate function')
         response = requests.post(
             PERSONA_VERIFY_URL,
+            verify=True,
             data={'assertion': assertion, 'audience': settings.DOMAIN}
         )
         logging.warning('got response from persona')
