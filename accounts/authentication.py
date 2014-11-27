@@ -1,4 +1,5 @@
 import requests
+import logging
 
 from django.contrib.auth import get_user_model
 
@@ -12,10 +13,13 @@ DOMAIN = 'localhost'
 class PersonaAuthenticationBackend:
 
     def authenticate(self, assertion):
+        logging.warning('entering authenticate function')
         response = requests.post(
             PERSONA_VERIFY_URL,
             data={'assertion': assertion, 'audience': DOMAIN}
         )
+        logging.warning('got response from persona')
+        logging.warning(response.content.decode())
         json = response.json()
         if response.ok and json['status'] == 'okay':
             json_email = json['email']
